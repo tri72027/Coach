@@ -1,0 +1,57 @@
+<div class="modal-header">
+  <h4 class="modal-title">Update</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formUpdate">
+    <div class="row">
+      <label class="col-3">Điểm đi</label>
+      <ng-select class="col-3" formControlName="provinceStart" (change)="changeProvinceStart($event)">
+        <ng-option *ngFor="let provinceStart  of provinceStarts" [value]="provinceStart.provinceID">
+          {{ provinceStart.name}}</ng-option>
+
+      </ng-select>
+
+      <label class="col-3">Điểm đến</label>
+      <ng-select class="col-3" #NgSelectComponent formControlName="provinceEnd" (change)="changeProvinceEnd()">
+        <ng-option *ngFor="let provinceEnd  of provinceEndsTemps" [value]="provinceEnd.provinceID">
+          {{ provinceEnd.name}}</ng-option>
+      </ng-select>
+    </div>
+    <div class="row mt-3">
+      <label class="col-3">Ngày đi</label>
+      <div class="input-group col-3">
+        <input class="form-control" placeholder="yyyy-mm-dd" name="dp1" formControlName="dateGo" ngbDatepicker
+          #d1="ngbDatepicker" (dateSelect)="getTrip()">
+        <div class="input-group-append">
+          <button class="btn btn-outline-secondary calendar " (click)="d1.toggle()" type="button">
+            <fa-icon [icon]="faCalendar"></fa-icon>
+          </button>
+        </div>
+      </div>
+      <label class="col-3">Trạng thái</label>
+      <ng-select class="col-3" formControlName="statusID">
+        <ng-option *ngFor="let status  of statusTicket" [value]="status.statusID">
+          {{ status.name}}</ng-option>
+
+      </ng-select>
+
+    </div>
+  </form>
+  <div *ngIf="dataTripOneWay" class="mt-3">
+    <ng-select [(ngModel)]="carValueOneWay" (change)="changeCar(carValueOneWay)">
+      <ng-option *ngFor="let trip of dataTripOneWay" [value]="trip.carID">
+        {{trip.carName}} | {{trip.licensePlates}}
+      </ng-option>
+    </ng-select>
+    <app-seat [dataTrip]="dataTripOneWay" [carValueOneWay]="carValueOneWay" (dataSeatCar)="submitDataOneWay($event)"
+      [chooseSeats]="chooseSeatsCurent" [seatChooseDisabled]="seatChooseDisabledOneWay"></app-seat>
+
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  <button type="button" ngbAutofocus class="btn btn-success" (click)="modal.close('Ok click'); submit()">Ok</button>
+</div>

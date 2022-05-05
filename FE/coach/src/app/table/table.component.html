@@ -1,0 +1,62 @@
+<div class="row mt-3">
+  <div class="col-3 ml-3 d-flex justify-content-between">
+    <button class="btn btn-success " (click)="action('','addNew')">Thêm mới</button>
+    <button type="reset" class="btn btn-success" (click)="action(checkStore,'deleteAll')">Xoá tất cả</button>
+  </div>
+
+
+</div>
+<div class="row justify-content-between m-3 ">
+  <div class="select-paging align-items-center">
+    <select class="form-control  page-size" style="width: auto" name="pageSize"
+      (change)="changePageSize($event)">
+      <option *ngFor="let option of pageOpiton" [selected]="option === pageSize" [value]="option">
+        {{option}}
+      </option>
+    </select>
+  </div>
+  <div class="d-flex ">
+    <ngb-pagination class="  " [(page)]="page" [pageSize]="pageSize"
+      [collectionSize]="totalElements" (pageChange)="pageChange($event)"></ngb-pagination>
+  </div>
+</div>
+<div class="ml-3">
+  <p>{{totalElements}} Tổng số đòng</p>
+</div>
+<div class=" fieldset  p-3 ">
+
+  <table class="table table-striped w-100">
+    <thead>
+      <tr class="titleinfo border ">
+        <th *ngIf="isCheck" class="align-middle"><input type="checkbox" (change)="checkAll($event)"
+            [(ngModel)]="checked"></th>
+            <th class="align-middle">STT</th>
+        <th *ngFor="let header of objectKeys(columHeader), let idx index" class="align-middle">{{columHeader[header]}}
+        </th>
+        <th *ngIf="isAction" class="align-middle">Hành động</th>
+
+      </tr>
+    </thead>
+    <tbody *ngIf="dataTable">
+      <tr *ngFor="let data of dataTable, let idx = index ">
+        <td *ngIf="isCheck"><input type="checkbox" (change)="checkItem(data[fieldID], $event)"
+            [checked]="checkStore.has(data[fieldID])"></td>
+        <!-- <td>{{data['ticketCode']}}</td> -->
+        <td>{{idx +1}}</td>
+        <td *ngFor="let datarow of objectKeys(columHeader) "> {{data[datarow]}}</td>
+        <td *ngIf="isAction" class=" d-flex justify-content-around">
+          <div *ngIf="info" class="d-inline" style=" cursor:pointer" (click)="action(data[fieldID],'info')">
+            <fa-icon [icon]="faInfo"> </fa-icon>
+          </div>
+          <div *ngIf="update" class="d-inline" style=" cursor:pointer" (click)="action(data[fieldID],'update')">
+            <fa-icon [icon]="faPenAlt"> </fa-icon>
+          </div>
+          <div *ngIf="delete" class="d-inline" style=" cursor:pointer" (click)="action(data[fieldID],'delete')">
+            <fa-icon [icon]="faTrashAlt"> </fa-icon>
+          </div>
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

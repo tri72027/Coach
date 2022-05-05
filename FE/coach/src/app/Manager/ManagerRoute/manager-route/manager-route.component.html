@@ -1,0 +1,54 @@
+<div class="container mt-5">
+  <div class=" fieldset  p-3">
+    <h5>Quản lý vé</h5>
+    <form [formGroup]="formSearchRoute">
+      <div class="row">
+
+        <div class="col-4 text-center">
+          <label for="provinceStart">Điểm đi</label>
+          <ng-select #NgSelectComponent id="provinceStart" name="provinceStart" formControlName="provinceStart">
+            <ng-option *ngFor="let province of provinces" [value]="province?.provinceID">
+              {{province?.name}} </ng-option>
+          </ng-select>
+        </div>
+        <div class="col-4 text-center">
+          <label for="provinceEnd">Điểm đến</label>
+          <ng-select #NgSelectComponent id="provinceEnd" name="provinceEnd" formControlName="provinceEnd">
+            <ng-option *ngFor="let province of provinces" [value]="province?.provinceID">
+              {{province?.name}}</ng-option>
+          </ng-select>
+        </div>
+        <div class="col-4 text-center">
+          <label for="departureTime">Thời gian khởi hành</label>
+          <input type="text" id="departureTime" formControlName="departureTime" class="form-control" name="departureTime">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-4 text-center">
+          <label for="journeyTime">Thời gian chạy</label>
+          <input type="text" id="journeyTime" formControlName="journeyTime" class="form-control" name="journeyTime">
+        </div>
+        <div class="col-4 text-center">
+          <label for="status">Trạng thái</label>
+          <ng-select id="status" name="status" formControlName="statusID">
+            <ng-option *ngFor="let status of statuss" [value]="status?.statusID">
+              {{status?.name}}</ng-option>
+          </ng-select>
+        </div>
+      </div>
+      <div class="row mt-3">
+        <div class="col-3 d-flex justify-content-between">
+          <button class="btn btn-success " (click)="searchRoute()">Tìm kiếm</button>
+          <button type="reset" class="btn btn-success">Xóa form</button>
+        </div>
+        <div class="col-2">
+
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <app-table [columHeader]="columHeader" [dataTable]="dataTable" [fieldID]="fieldID" [info]="false" [isAction]="true" [page]="page" [pageSize]="pageSize" [totalElements]="totalElements"
+    (buttonAction)="action($event)" (pagi)="pageChange($event)" (changeLimit)="changeLimit($event)" class="mb-3"></app-table>
+
+</div>

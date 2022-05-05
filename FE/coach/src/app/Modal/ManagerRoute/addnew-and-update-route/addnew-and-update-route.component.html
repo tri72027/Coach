@@ -1,0 +1,82 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formUpdateRoute">
+    <div class=" row m-3" >
+      <div class="col-12">
+      <label for="provinceStart" >Điểm đi</label>
+      <ng-select  #NgSelectComponent id="provinceStart" name="provinceStart"
+        formControlName="provinceStart">
+        <ng-option *ngFor="let province of provinces" [value]="province?.provinceID">
+          {{province?.name}} </ng-option>
+      </ng-select>
+    </div>
+  </div>
+  <div *ngIf="submitted && formUpdateRoute.controls.provinceStart.errors" class="alert alert-danger mx-5" role="alert">
+    Vui lòng chọn điểm đến
+   </div>
+    <div class=" row m-3">
+      <div class="col-12">
+      <label for="provinceEnd" >Điểm đến</label>
+      <ng-select  #NgSelectComponent id="provinceEnd" name="provinceEnd" formControlName="provinceEnd">
+        <ng-option *ngFor="let province of provinces" [value]="province?.provinceID">
+          {{province?.name}}</ng-option>
+      </ng-select>
+    </div>
+    </div>
+    <div *ngIf="submitted && formUpdateRoute.controls.provinceEnd.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng chọn điểm đến
+     </div>
+    <div class=" row m-3">
+      <div class="col-12">
+      <label for="fullname" >Thời gian khởi hành</label>
+      <input type="text" id="departureTime" formControlName="departureTime" class="form-control" name="departureTime">
+    </div>
+  </div>
+  <div *ngIf="submitted && formUpdateRoute.controls.departureTime.errors" class="alert alert-danger mx-5" role="alert">
+    Vui lòng điền thời gian khởi hành
+   </div>
+  <div class=" row m-3">
+    <div class="col-12">
+    <label for="fullname" >Thời gian chạy</label>
+    <input type="text" id="journeyTime" formControlName="journeyTime" class="form-control" name="journeyTime">
+  </div>
+</div>
+<div *ngIf="submitted && formUpdateRoute.controls.journeyTime.errors" class="alert alert-danger mx-5" role="alert">
+  Vui lòng điền thời gian chạy
+ </div>
+    <div class=" row m-3">
+      <div class="col-12">
+      <label for="fullname" >Giá tiền</label>
+      <input type="text" id="price" formControlName="price" class="form-control" name="price">
+    </div>
+    </div>
+    <div *ngIf="submitted && formUpdateRoute.controls.price.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền giá tiền của tuyến
+     </div>
+    <div class=" row m-3">
+      <div class="col-12">
+      <label >Trạng thái</label>
+      <ng-select  formControlName="statusID">
+        <ng-option *ngFor="let status  of statuss" [value]="status.statusID">
+          {{ status.name}}</ng-option>
+
+      </ng-select>
+    </div>
+  </div>
+  <div *ngIf="submitted && formUpdateRoute.controls.statusID.errors" class="alert alert-danger mx-5" role="alert">
+    Vui lòng điền trạng thái
+   </div>
+
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  <button type="button" ngbAutofocus class="btn btn-success" (click)="save()">Ok</button>
+</div>

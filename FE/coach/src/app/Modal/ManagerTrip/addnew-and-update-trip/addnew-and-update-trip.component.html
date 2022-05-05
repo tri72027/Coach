@@ -1,0 +1,87 @@
+<div class="modal-header">
+  <h4 class="modal-title">{{title}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formUpdateTrip">
+    <div class=" row m-3">
+      <div class="col-12">
+
+        <label for="dateGo">Ngày </label>
+        <div class="input-group ">
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp4" formControlName="date"
+          ngbDatepicker #d4="ngbDatepicker">
+          <div class="input-group-append">
+            <button class="btn btn-outline-secondary calendar " (click)="d4.toggle()" type="button">
+              <fa-icon [icon]="faCalendar"></fa-icon>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="submitted && formUpdateTrip.controls.date.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng chọn ngày
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="route">Chọn Tuyến</label>
+        <ng-select #NgSelectComponent id="route" name="route" formControlName="routeID" >
+          <ng-option *ngFor="let route of routes" [value]="route?.routeID">
+            {{route?.route}} | {{route?.departureTime}} | {{route?.journeyTime}}</ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateTrip.controls.routeID.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng chọn tuyến
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="car">Chọn xe</label>
+        <ng-select #NgSelectComponent id="car" name="car" formControlName="carID">
+          <ng-option *ngFor="let car of cars" [value]="car?.carID">
+            {{car?.name}}  | {{car?.licensePlates}} | {{car?.amount}} </ng-option>
+        </ng-select>
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateTrip.controls.carID.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng chọn xe
+    </div>
+    <!-- <div class=" row m-3">
+      <div class="col-12">
+        <label for="fullname">Thời gian khởi hành</label>
+        <input type="text" id="departureTime" disabled class="form-control" name="departureTime" [(ngModel)]="departureTime">
+      </div>
+    </div>
+
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="fullname">Thời gian chạy</label>
+        <input type="text" id="journeyTime" disabled class="form-control" name="journeyTime"  [(ngModel)]="journeyTime">
+      </div>
+    </div> -->
+
+    <div class=" row m-3">
+      <div class="col-12">
+        <label>Trạng thái</label>
+        <ng-select formControlName="statusID">
+          <ng-option *ngFor="let status  of statuss" [value]="status.statusID">
+            {{ status.name}}</ng-option>
+
+        </ng-select>
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateTrip.controls.statusID.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền trạng thái
+    </div>
+
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  <button type="button" ngbAutofocus class="btn btn-success" (click)="save()">Ok</button>
+</div>

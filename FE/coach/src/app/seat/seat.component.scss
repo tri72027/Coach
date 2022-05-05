@@ -1,0 +1,66 @@
+.chooseCarDiv
+{
+  left: 15%;
+  display: block;
+  background-image: url('/assets/image/car.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  position: relative;
+  width: 750px;
+  height:350px;
+  padding-top:60px;
+  padding-left: 242px;
+}
+
+input[type=checkbox] {
+    display:none;
+}
+
+input[type=checkbox].checkbox1 + label {
+    display:inline-block;
+    padding: 0 0 0 0px;
+    background:url("/assets/image/seat.png") no-repeat;
+    height: 70px;
+    width: 85px;
+    background-size: 50%;
+}
+
+input[type=checkbox].checkbox1:checked + label {
+    background:url("/assets/image/seatchoose.png") no-repeat;
+    height: 70px;
+    width: 85px;
+    display:inline-block;
+    background-size: 50%;
+}
+input[type=checkbox].checkbox1:disabled + label {
+  background:url("/assets/image/seatdisabled.png") no-repeat;
+  height: 70px;
+  width: 85px;
+  display:inline-block;
+  background-size: 50%;
+}
+input[type=checkbox].checkbox1:hover + label {
+ cursor: pointer;
+}
+
+input[type=checkbox].checkboxchoose:disabled + label {
+  background:url("/assets/image/seatchoosedisable.png") no-repeat;
+  height: 70px;
+  width: 85px;
+  display:inline-block;
+  background-size: 50%;
+}
+.seatDisable
+{
+color: rgb(195, 195, 195);
+}
+
+.seatchoose
+{
+color: rgb(168  , 255 , 168);
+}
+.seatCurrentChoose
+{
+  color: rgb(197,105,0)
+
+}

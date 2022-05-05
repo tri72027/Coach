@@ -1,0 +1,21 @@
+<div class="text-center mt-3">
+  <a><span class="seatsWhite">⬜</span>: Trống   </a>
+  <a><span class="seatCurrentChoose">⬛</span>: Đang chọn   </a>
+  <a><span class="seatchoose">⬛</span>: Có người đang chọn   </a>
+  <a><span class="seatDisable">⬛</span>: Đã chọn</a>
+
+</div>
+<div *ngIf="carValueOneWay || carValueRoundWay ">
+  <div class="chooseCarDiv">
+    <div *ngFor='let seat of seats, let idx index' class=" d-inline p-3 check " [class]="'check'+idx">
+
+      <input [id]="[OneWay==true ?['checkseat'+idx] :['checkseatRound'+idx]]" type="checkbox" (change)="chooseSeat($event,idx) "
+        [checked]="chooseSeats?.includes(idx) || chooseStore.has(idx)" [disabled]="seatsDisable?.includes(idx) || seatChooseDisabled?.includes(idx)" class="checkbox1"
+        [ngClass]="{'checkboxchoose': seatChooseDisabled.includes(idx) }" />
+      <label [for]="[ OneWay==true ?['checkseat'+idx] :['checkseatRound'+idx]]" class="text-right">{{idx}}</label>
+    </div>
+
+  </div>
+  <p>Ghế đã chọn: {{ chooseSeats.join(', ')}}</p>
+  <p>Tổng tiền: {{totalPrice }} VND</p>
+</div>

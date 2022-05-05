@@ -1,0 +1,55 @@
+<h4 class="text-center m-2">Thông tin Chi tiết</h4>
+<div *ngIf="data">
+  <div class="row">
+    <h5 class="col-4 m-2">Họ Và Tên: </h5>
+    <h5 class="col-6 m-2 text-success">{{data['fullName']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Số điện thoại:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['phone']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Ngày mua vé:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['dateBuyTicket']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2"> Ngày đi:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['dateGo']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Tuyến đường:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['route']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Giờ khởi hành:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['departureTime']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Mã vé:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['ticketCode']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Số lượng:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['amountSeats']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Vị trí ngồi:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['seats']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Giá vé:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['price']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Tên xe:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['carName']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Biển số xe:</h5>
+    <h5 class="col-6 m-2 text-success">{{data['licensePlates']}} </h5>
+  </div>
+  <div class="row">
+    <h5 class="col-4 m-2">Trạng thái:</h5>
+    <h5 class="col-6 m-2 mb-3 text-success">{{data['status']}} </h5>
+  </div>
+</div>

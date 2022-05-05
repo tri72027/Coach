@@ -1,0 +1,48 @@
+<div class="col-md-12">
+
+  <div class="card card-container">
+    <h3 class="text-center text-success mb-4">Đăng nhập</h3>
+    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+    <form *ngIf="!isLoggedIn" name="form" [formGroup]="formLogin">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" required formControlName="userName" />
+        <div class="col alert alert-danger" *ngIf="submitted && formLogin.controls.userName.errors">
+          <div *ngIf="submitted &&  formLogin.controls.userName.errors.required">Xin hãy nhập Tên tài khoản</div>
+          <div *ngIf=" submitted && formLogin.controls.userName.errors.minlength">
+            Độ dài của Tên tài khoản không thể nhỏ hơn 4
+          </div>
+          <div *ngIf="submitted && formLogin.controls.userName.errors.maxlength">
+            Độ dài của Tên tài khoản không thể lơn hơn 20 </div>
+        </div>
+
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" formControlName="password" />
+        <div class="col alert alert-danger" *ngIf="submitted && formLogin.controls.password.errors">
+          <div *ngIf="submitted &&  formLogin.controls.password.errors.required">Xin hãy nhập Mật khẩu</div>
+          <div *ngIf=" submitted && formLogin.controls.password.errors.minlength">
+            Độ dài của mật khẩu không thể nhỏ hơn 6
+          </div>
+          <div *ngIf="submitted && formLogin.controls.password.errors.maxlength">
+            Độ dài của mật khẩu không thể lớn hơn 20
+          </div>
+        </div>
+      </div>
+         <div class="form-group">
+        <button class="btn btn-success btn-block" (click)="login()">Đăng nhập </button>
+      </div>
+      <div class="form-group">
+        <div class="alert alert-danger" role="alert" *ngIf="submitted && isLoginFailed">
+          Đăng nhập thất bại: {{ errorMessage }}
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-success text-center" *ngIf="isLoggedIn">
+    Đăng nhập thành công.<br>
+    Sau {{countdownSecond}} giây sẽ chuyển sang trang chủ
+    </div>
+  </div>
+</div>

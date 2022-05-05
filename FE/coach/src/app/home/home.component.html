@@ -1,0 +1,68 @@
+<div class="toolbar">
+  <div class="row">
+    <div class="col-3 d-inline">
+      <img src="../assets/image/logo.png" alt="" width="70px" height="30px" routerLink>
+      <span>Hotline:</span>
+    </div>
+    <div *ngIf="!isLoggedIn" class="col-4  offset-5  d-inline">
+      <div class="mr-3  float-right ">
+        <button class="btn btn-success"  routerLink="/login"> Đăng nhập </button>
+      </div>
+      <div class="mr-3  float-right ">
+        <button class="btn btn-success"  routerLink="/register"> Đăng ký </button>
+      </div>
+    </div>
+    <div *ngIf="isLoggedIn" class="col-4  offset-5  d-inline">
+      <div class="mr-3  float-right ">
+
+        <nav>
+          <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-center">
+
+            <li ngbDropdown class="nav-item">
+              <span class="mr-3 ">{{userName}}</span>
+              <fa-icon (click)="false" class=" d-inline" ngbDropdownToggle [icon]="faUser"></fa-icon>
+              <div ngbDropdownMenu>
+                <button ngbDropdownItem>Thông tin tài khoản</button>
+                <button ngbDropdownItem routerLink="/tripmanager">Lịch sử mua vé</button>
+                <button ngbDropdownItem routerLink="/ticketmanager">Quản Lý Vé</button>
+                <div class="dropdown-divider"></div>
+                <button ngbDropdownItem (click)="signout()">Đăng xuất</button>
+              </div>
+            </li>
+          </ul>
+        </nav>
+
+      </div>
+    </div>
+  </div>
+</div>
+<div class="toolbar2">
+  <div class="row ">
+    <div class="col-12 text-center ">
+      <nav>
+        <ul ngbNav #nav="ngbNav" [activeId]="1" class="nav-tabs justify-content-center">
+          <li [ngbNavItem]="activeNavigation">
+            <a ngbNavLink routerLink="" routerLinkActive="active-link">Trang chủ</a>
+          </li>
+          <li [ngbNavItem]="2">
+            <a ngbNavLink routerLink="/sche">Lịch trình</a>
+          </li>
+          <li ngbDropdown [ngbNavItem]="3" class="nav-item" *ngIf="showAdminBoard">
+            <a href (click)="false" class="nav-link" ngbNavLink ngbDropdownToggle>Quản Lý</a>
+            <div ngbDropdownMenu>
+
+              <button ngbDropdownItem routerLink="/routemanager">Quản Lý Tuyến</button>
+              <button ngbDropdownItem routerLink="/tripmanager">Quản Lý Chuyến</button>
+              <button ngbDropdownItem routerLink="/ticketmanager">Quản Lý Vé</button>
+              <button ngbDropdownItem routerLink="/carmanager" routerLinkActive>Quản Lý Xe</button>
+              <div class="dropdown-divider"></div>
+              <button ngbDropdownItem>Separated link</button>
+            </div>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+<router-outlet></router-outlet>

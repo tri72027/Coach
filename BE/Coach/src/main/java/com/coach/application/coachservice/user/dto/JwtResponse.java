@@ -1,0 +1,59 @@
+package com.coach.application.coachservice.user.dto;
+
+import java.util.List;
+
+public class JwtResponse {
+
+	private String type = "Bearer";
+	private Long id;
+	private String userName;
+//	private String email;
+	private String token;
+
+
+
+	public JwtResponse( Long id, String userName, String token) {
+	this.id = id;
+	this.userName = userName;
+	this.token = token;
+}
+
+	public String getAccessToken() {
+		return token;
+	}
+
+	public void setAccessToken(String accessToken) {
+		this.token = accessToken;
+	}
+
+	public String getTokenType() {
+		return type;
+	}
+
+	public void setTokenType(String tokenType) {
+		this.type = tokenType;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	/*
+	 * public String getEmail() { return email; }
+	 * 
+	 * public void setEmail(String email) { this.email = email; }
+	 */
+	public String getUsername() {
+		return userName;
+	}
+
+	public void setUsername(String username) {
+		this.userName = username;
+	}
+
+	
+}

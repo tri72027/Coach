@@ -1,0 +1,76 @@
+<div class="modal-header">
+  <h4 class="modal-title">Update Car</h4>
+  <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+  <form [formGroup]="formUpdateCar">
+
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="fullname">Mã xe</label>
+        <input type="text" id="code" formControlName="code" class="form-control" name="code">
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.code.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền mã xe
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="name">Tên xe</label>
+        <input type="text" id="name" formControlName="name" class="form-control" name="name">
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.journeyTime.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền tên xe
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="licensePlates">Biển số xe</label>
+        <input type="text" id="licensePlates" formControlName="licensePlates" class="form-control" name="licensePlates">
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.journeyTime.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền biểm số xe
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="amount">Số lượng chỗ ngồi</label>
+        <input type="text" id="amount" formControlName="amount" class="form-control" name="amount">
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.journeyTime.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền số lượng ghế
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label for="price">Giá tiền</label>
+        <input type="number" id="price" formControlName="price" class="form-control" name="price">
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.price.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền giá tiền của tuyến
+    </div>
+    <div class=" row m-3">
+      <div class="col-12">
+        <label>Trạng thái</label>
+        <ng-select formControlName="statusID">
+          <ng-option *ngFor="let status  of statuss" [value]="status.statusID">
+            {{ status.name}}</ng-option>
+
+        </ng-select>
+      </div>
+    </div>
+    <div *ngIf="submitted && formUpdateCar.controls.statusID.errors" class="alert alert-danger mx-5" role="alert">
+      Vui lòng điền trạng thái
+    </div>
+
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-outline-secondary" (click)="modal.dismiss('cancel click')">Cancel</button>
+  <button type="button" ngbAutofocus class="btn btn-success" (click)="save()">Ok</button>
+</div>
